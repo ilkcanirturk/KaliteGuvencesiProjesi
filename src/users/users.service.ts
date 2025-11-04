@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-// import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto'; 
 
 @Injectable()
 export class UsersService {
@@ -14,7 +14,6 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto): Promise<User> {
     const newUser = this.usersRepository.create(createUserDto);
-
     return this.usersRepository.save(newUser);
   }
 
@@ -22,11 +21,25 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return this.usersRepository.findOneBy({ id: id });
+  async findOne(id: number) {
+    const user = await this.usersRepository.findOneBy({ id: id });
+    if (!user) {
+      throw new NotFoundException(`#${id} ID'li kullanıcı bulunamadı!`);
+    }
+    return user;
   }
 
-  // update(id: number, updateUserDto: UpdateUserDto) {}
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.findOne(id);
 
-  // remove(id: number) {}
+    Object.assign(user, updateUserDto);
+    
+    return this.usersRepository.save(user);
+  }
+
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    await this.usersRepository.remove(user);
+    return { message: `#${id} ID'li kullanıcı başarıyla silindi.` }; 
+  }
 }
