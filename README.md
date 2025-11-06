@@ -1,4 +1,4 @@
-<p align="center">
+<!-- <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
@@ -21,7 +21,7 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+<!-- ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
@@ -95,4 +95,116 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE). --> -->
+
+# Yazılım Kalite Güvencesi ve Testi Projesi
+
+Bu proje, 2025-2026 Güz Dönemi Dönem Sonu Projesi kapsamında bir REST API içermektedir.
+
+## 🛠️ Kullanılan Teknolojiler
+
+* **Backend:** Nest.JS (Node.js, TypeScript)
+* **Veritabanı:** MS SQL Server Express
+* **ORM:** TypeORM
+* **API Dokümantasyonu:** Swagger (OpenAPI)
+* **Test:** Jest (Varsayılan)
+
+---
+
+## 🚀 Kurulum Talimatları (Adım Adım)
+
+Bu projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
+
+### 1. Gereksinimler
+
+* Node.js (v18+ tavsiye edilir)
+* NPM
+* Git
+* MS SQL Server (Express sürümü kullanılabilir)
+* SQL Server Management Studio (SSMS) (veya Azure Data Studio)
+
+### 2. Proje Kurulumu
+
+1.  Projeyi klonlayın:
+    ```bash
+    git clone [https://github.com/ilkcanirturk/KaliteGuvencesiProjesi.git](https://github.com/ilkcanirturk/KaliteGuvencesiProjesi.git)
+    cd KaliteGuvencesiProjesi
+    ```
+
+2.  Gerekli paketleri yükleyin:
+    ```bash
+    npm install
+    ```
+
+### 3. Veritabanı Ayarları
+
+1.  SSMS kullanarak SQL Server'ınıza bağlanın.
+2.  `YazilimKaliteProjesi` adında **boş bir veritabanı** oluşturun.
+    ```sql
+    CREATE DATABASE YazilimKaliteProjesi;
+    ```
+3.  Proje dizinindeki `.env.example` dosyasını kopyalayıp `.env` adında yeni bir dosya oluşturun.
+4.  `.env` dosyasını kendi SQL Server kullanıcı bilgilerinizle (kullanıcı adı, şifre) doldurun. `DB_HOST` (örn: `localhost\SQLEXPRESS`) ve `DB_NAME` (`YazilimKaliteProjesi`) ayarlarının doğru olduğundan emin olun.
+
+**ÖNEMLİ:** Proje, TypeORM'un `synchronize: true` özelliğini kullanmaktadır. Projeyi başlattığınızda gerekli tablolar (`users` vb.) veritabanınızda otomatik olarak oluşturulacaktır.
+
+### 4. SQL Server Yapılandırması (Bağlantı Hatası Alırsanız)
+
+Eğer `npm run start:dev` komutunu çalıştırdığınızda veritabanı bağlantı hatası (`Port for SQLEXPRESS not found`) alırsanız:
+
+1.  Windows'ta **SQL Server Configuration Manager**'ı açın.
+2.  `SQL Server Network Configuration` > `Protocols for SQLEXPRESS` altında `TCP/IP` protokolünü **"Enable"** (Etkinleştir) yapın.
+3.  Windows Hizmetleri'nden (`services.msc`) **"SQL Server (SQLEXPRESS)"** hizmetini yeniden başlatın.
+4.  **"SQL Server Browser"** hizmetinin çalıştığından emin olun.
+
+### 5. Projeyi Başlatma
+
+```bash
+npm run start:dev
+```
+### 6. API Endpoint'leri
+
+API'yi test etmek, tüm endpoint'leri görüntülemek ve request/response örneklerini incelemek için Swagger UI kullanabilirsiniz.
+
+Proje çalışırken şu adrese gidin: 👉 http://localhost:3000/api-docs
+
+GET	/users : Tüm kullanıcıları listeler
+POST	/users : Yeni bir kullanıcı oluşturur
+GET	/users/{id} :	Belirli bir kullanıcıyı getirir
+PATCH	/users/{id} :	Kullanıcı bilgilerini günceller
+DELETE	/users/{id} :	Kullanıcıyı siler
+
+### 7. Testleri Çalıştırma
+
+Projenin testlerini çalıştırmak için aşağıdaki komutları kullanabilirsiniz:
+
+#### Tüm testleri çalıştır (Unit + E2E):
+
+```bash
+npm run test
+```
+
+#### Sadece birim (unit) testlerini çalıştır ve izle:
+
+```bash
+npm run test:watch
+```
+
+
+#### Test kapsamı (coverage) raporu al:
+
+```bash
+npm run test:cov
+```
+
+
+#### Uçtan uca (E2E) sistem testlerini çalıştır:
+
+```bash
+npm run test:e2e
+```
+
+
+
+
+
