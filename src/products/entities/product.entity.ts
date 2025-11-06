@@ -1,10 +1,12 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
+  OneToMany
 } from 'typeorm';
 
 @Entity({ name: 'products' })
@@ -27,4 +29,7 @@ export class Product {
   @ManyToMany(() => Category, (category) => category.products)
   @JoinTable()
   categories: Category[];
+
+  @OneToMany(() => Review, (review) => review.product)
+  reviews: Review[];
 }
