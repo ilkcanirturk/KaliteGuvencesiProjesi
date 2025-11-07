@@ -51,6 +51,6 @@ export class ProductsService {
   async remove(id: number) {
     const product = await this.findOne(id);
     await this.productsRepository.remove(product);
-    return { message: `#${id} ID'li ürün başarıyla silindi.` }; 
+    return { message: `#${1} ID'li ürün başarıyla silindi.` }; 
   }
 }
