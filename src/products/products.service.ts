@@ -13,16 +13,17 @@ export class ProductsService {
     private productsRepository: Repository<Product>,
   ) {}
 
-  async create(createProductDto: CreateProductDto){
+  async create(createProductDto: CreateProductDto) {
     const { categoryIds, ...productDetails } = createProductDto;
-
     const categories = categoryIds.map(id => ({ id: id }));
-
+  
     const newProduct = this.productsRepository.create({
       ...productDetails,
       categories: categories,
     });
-    return this.productsRepository.save(newProduct);
+  
+    const savedProduct = await this.productsRepository.save(newProduct);
+    return this.findOne(savedProduct.id);
   }
 
   findAll() {
