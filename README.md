@@ -101,6 +101,8 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE). -->
 
 Bu proje, 2025-2026 Güz Dönemi Dönem Sonu Projesi kapsamında bir REST API içermektedir.
 
+[![codecov](https://codecov.io/github/ilkcanirturk/KaliteGuvencesiProjesi/graph/badge.svg?token=NZJ8YCTAAD)](https://codecov.io/github/ilkcanirturk/KaliteGuvencesiProjesi)
+
 ## 🛠️ Kullanılan Teknolojiler
 
 * **Backend:** Nest.JS (Node.js, TypeScript)
