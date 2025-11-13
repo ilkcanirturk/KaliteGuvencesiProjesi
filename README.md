@@ -110,6 +110,7 @@ Bu proje, 2025-2026 Güz Dönemi Dönem Sonu Projesi kapsamında bir REST API i�
 * **ORM:** TypeORM
 * **API Dokümantasyonu:** Swagger (OpenAPI)
 * **Test:** Jest (Varsayılan)
+* **CI/CD:** GitHub Actions, Codecov
 
 ---
 
@@ -170,40 +171,74 @@ API'yi test etmek, tüm endpoint'leri görüntülemek ve request/response örnek
 
 Proje çalışırken şu adrese gidin: 👉 http://localhost:3000/api-docs
 
+#### Users (Kullanıcılar)
+
 GET	/users : Tüm kullanıcıları listeler
 POST	/users : Yeni bir kullanıcı oluşturur
 GET	/users/{id} :	Belirli bir kullanıcıyı getirir
 PATCH	/users/{id} :	Kullanıcı bilgilerini günceller
 DELETE	/users/{id} :	Kullanıcıyı siler
 
+#### Products (Ürünler)
+
+GET /products: Tüm ürünleri listeler.
+POST /products: Yeni bir ürün oluşturur (kategorilerle ilişkili).
+GET /products/{id}: Belirli bir ürünü getirir.
+PATCH /products/{id}: Ürün bilgilerini günceller.
+DELETE /products/{id}: Ürünü siler.
+
+#### Categories (Kategoriler)
+
+GET /categories: Tüm kategorileri listeler.
+POST /categories: Yeni bir kategori oluşturur.
+GET /categories/{id}: Belirli bir kategoriyi getirir.
+PATCH /categories/{id}: Kategori bilgilerini günceller.
+DELETE /categories/{id}: Kategoriyi siler.
+
+#### Orders (Siparişler)
+
+GET /orders: Tüm siparişleri listeler (kullanıcı bilgisiyle).
+POST /orders: Yeni bir sipariş oluşturur (kullanıcıya bağlı).
+GET /orders/{id}: Belirli bir siparişi getirir.
+PATCH /orders/{id}: Sipariş bilgilerini günceller.
+DELETE /orders/{id}: Siparişi siler.
+
+#### Reviews (Değerlendirmeler)
+
+GET /reviews: Tüm değerlendirmeleri listeler (kullanıcı ve ürün bilgisiyle).
+POST /reviews: Yeni bir değerlendirme oluşturur (kullanıcı ve ürüne bağlı).
+GET /reviews/{id}: Belirli bir değerlendirmeyi getirir.
+PATCH /reviews/{id}: Değerlendirme bilgilerini günceller.
+DELETE /reviews/{id}: Değerlendirmeyi siler.
+
 ### 7. Testleri Çalıştırma
 
 Projenin testlerini çalıştırmak için aşağıdaki komutları kullanabilirsiniz:
 
-#### Tüm testleri çalıştır (Unit + E2E):
-
-```bash
-npm run test
-```
-
-#### Sadece birim (unit) testlerini çalıştır ve izle:
-
-```bash
-npm run test:watch
-```
-
-
-#### Test kapsamı (coverage) raporu al:
+#### Test kapsamı (coverage) raporu al (Birim + Entegrasyon):
 
 ```bash
 npm run test:cov
 ```
 
-
 #### Uçtan uca (E2E) sistem testlerini çalıştır:
 
 ```bash
 npm run test:e2e
+```
+
+
+#### Tüm testleri çalıştır (Birim + Entegrasyon + E2E):
+
+```bash
+npm run test
+```
+
+
+#### Sadece birim (unit) testlerini çalıştır ve izle:
+
+```bash
+npm run test:watch
 ```
 
 
