@@ -6,7 +6,6 @@ import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 
-
 type MockRepository<T = any> = {
   findOne: jest.Mock;
   find: jest.Mock;
@@ -79,7 +78,7 @@ describe('ProductsService', () => {
         stock: 5,
         categoryIds: [],
       };
-      
+
       const expectedProduct = {
         id: 3,
         ...createProductDto,
@@ -91,8 +90,16 @@ describe('ProductsService', () => {
       repository.create.mockReturnValue(createProductDto);
       repository.save.mockReturnValue(Promise.resolve(expectedProduct));
 
+      repository.findOne.mockReturnValue(Promise.resolve(expectedProduct));
+
       const result = await service.create(createProductDto);
+
       expect(result).toEqual(expectedProduct);
+
+      expect(repository.findOne).toHaveBeenCalledWith({
+        where: { id: expectedProduct.id },
+        relations: ['categories'],
+      });
     });
   });
 
@@ -106,7 +113,7 @@ describe('ProductsService', () => {
 
   describe('findOne', () => {
     it('should find a product by id and return it', async () => {
-      repository.findOne.mockReturnValue(Promise.resolve(mockProduct)); 
+      repository.findOne.mockReturnValue(Promise.resolve(mockProduct));
 
       const result = await service.findOne(1);
       expect(result).toEqual(mockProduct);
@@ -117,7 +124,7 @@ describe('ProductsService', () => {
     });
 
     it('should throw NotFoundException if product is not found', async () => {
-      repository.findOne.mockReturnValue(Promise.resolve(null)); 
+      repository.findOne.mockReturnValue(Promise.resolve(null));
       await expect(service.findOne(999)).rejects.toThrow(NotFoundException);
     });
   });
@@ -127,7 +134,7 @@ describe('ProductsService', () => {
       const updateProductDto: UpdateProductDto = { name: 'Updated Name' };
       const updatedProduct = { ...mockProduct, name: 'Updated Name' };
 
-      repository.findOne.mockReturnValue(Promise.resolve(mockProduct)); 
+      repository.findOne.mockReturnValue(Promise.resolve(mockProduct));
       repository.save.mockReturnValue(Promise.resolve(updatedProduct));
 
       const result = await service.update(1, updateProductDto);
@@ -143,18 +150,20 @@ describe('ProductsService', () => {
     });
   });
 
-  
   describe('remove', () => {
     it('should remove a product and return success message', async () => {
-      repository.findOne.mockReturnValue(Promise.resolve(mockProduct)); 
+      repository.findOne.mockReturnValue(Promise.resolve(mockProduct));
       repository.remove.mockReturnValue(Promise.resolve(mockProduct));
 
       const result = await service.remove(1);
-      
-      const expectedMessage = (service as any).remove(1).constructor.name === 'Promise' 
-        ? (await service.remove(1)).message 
-        : (service as any).remove(1).message;
-      expect(result).toEqual({ message: `#${1} ID'li ürün başarıyla silindi.` });
+
+      const expectedMessage =
+        (service as any).remove(1).constructor.name === 'Promise'
+          ? (await service.remove(1)).message
+          : (service as any).remove(1).message;
+      expect(result).toEqual({
+        message: `#${1} ID'li ürün başarıyla silindi.`,
+      });
     });
 
     it('should throw NotFoundException if product to remove is not found', async () => {
