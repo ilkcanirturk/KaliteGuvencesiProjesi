@@ -31,3 +31,9 @@ jobs:
       run: npm install sqlite3 --save-dev
     - name: E2E Testlerini Çalıştır
       run: npm run test:e2e
+
+      - name: Coverage Raporunu Codecov'a Yükle
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} 
+        fail_ci_if_error: true
