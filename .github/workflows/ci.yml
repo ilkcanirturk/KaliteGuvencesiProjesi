@@ -1,0 +1,33 @@
+name: NestJS CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test-yazilim-kalite-guvencesi-ve-testi-projesi:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodu Checkout Yap
+      uses: actions/checkout@v3
+
+    - name: Node.js 18.x Kurulumu
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm' 
+
+    - name: Bağımlılıkların Yüklenmesi
+      run: npm install
+
+    - name: Birim ve Entegrasyon Testlerini Çalıştır (Coverage ile)
+      run: npm run test:cov
+
+    - name: E2E Testleri için sqlite3 Kur
+      run: npm install sqlite3 --save-dev
+    - name: E2E Testlerini Çalıştır
+      run: npm run test:e2e
