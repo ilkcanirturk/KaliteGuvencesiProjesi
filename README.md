@@ -165,51 +165,48 @@ Eğer `npm run start:dev` komutunu çalıştırdığınızda veritabanı bağlan
 ```bash
 npm run start:dev
 ```
-### 6. API Endpoint'leri
+### 6. API Endpoint'leri ve Dokümantasyon
 
-API'yi test etmek, tüm endpoint'leri görüntülemek ve request/response örneklerini incelemek için Swagger UI kullanabilirsiniz.
+API'yi test etmek, tüm endpoint'leri görüntülemek ve request/response şemalarını incelemek için **Swagger UI** kullanabilirsiniz.
 
-Proje çalışırken şu adrese gidin: 👉 http://localhost:3000/api-docs
+Proje çalışırken şu adrese gidin: 👉 **[http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
+
+Aşağıda ana kaynakların bir özeti bulunmaktadır. Tüm detaylar Swagger arayüzünde mevcuttur.
 
 #### Users (Kullanıcılar)
-
-GET	/users : Tüm kullanıcıları listeler
-POST	/users : Yeni bir kullanıcı oluşturur
-GET	/users/{id} :	Belirli bir kullanıcıyı getirir
-PATCH	/users/{id} :	Kullanıcı bilgilerini günceller
-DELETE	/users/{id} :	Kullanıcıyı siler
+* `GET /users`: Tüm kullanıcıları listeler.
+* `POST /users`: Yeni bir kullanıcı oluşturur.
+* `GET /users/{id}`: Belirli bir kullanıcıyı getirir.
+* `PATCH /users/{id}`: Kullanıcı bilgilerini günceller.
+* `DELETE /users/{id}`: Kullanıcıyı siler.
 
 #### Products (Ürünler)
-
-GET /products: Tüm ürünleri listeler.
-POST /products: Yeni bir ürün oluşturur (kategorilerle ilişkili).
-GET /products/{id}: Belirli bir ürünü getirir.
-PATCH /products/{id}: Ürün bilgilerini günceller.
-DELETE /products/{id}: Ürünü siler.
+* `GET /products`: Tüm ürünleri listeler.
+* `POST /products`: Yeni bir ürün oluşturur (kategorilerle ilişkili).
+* `GET /products/{id}`: Belirli bir ürünü getirir.
+* `PATCH /products/{id}`: Ürün bilgilerini günceller.
+* `DELETE /products/{id}`: Ürünü siler.
 
 #### Categories (Kategoriler)
-
-GET /categories: Tüm kategorileri listeler.
-POST /categories: Yeni bir kategori oluşturur.
-GET /categories/{id}: Belirli bir kategoriyi getirir.
-PATCH /categories/{id}: Kategori bilgilerini günceller.
-DELETE /categories/{id}: Kategoriyi siler.
+* `GET /categories`: Tüm kategorileri listeler.
+* `POST /categories`: Yeni bir kategori oluşturur.
+* `GET /categories/{id}`: Belirli bir kategoriyi getirir.
+* `PATCH /categories/{id}`: Kategori bilgilerini günceller.
+* `DELETE /categories/{id}`: Kategoriyi siler.
 
 #### Orders (Siparişler)
-
-GET /orders: Tüm siparişleri listeler (kullanıcı bilgisiyle).
-POST /orders: Yeni bir sipariş oluşturur (kullanıcıya bağlı).
-GET /orders/{id}: Belirli bir siparişi getirir.
-PATCH /orders/{id}: Sipariş bilgilerini günceller.
-DELETE /orders/{id}: Siparişi siler.
+* `GET /orders`: Tüm siparişleri listeler (kullanıcı bilgisiyle).
+* `POST /orders`: Yeni bir sipariş oluşturur (kullanıcıya bağlı).
+* `GET /orders/{id}`: Belirli bir siparişi getirir.
+* `PATCH /orders/{id}`: Sipariş bilgilerini günceller.
+* `DELETE /orders/{id}`: Siparişi siler.
 
 #### Reviews (Değerlendirmeler)
-
-GET /reviews: Tüm değerlendirmeleri listeler (kullanıcı ve ürün bilgisiyle).
-POST /reviews: Yeni bir değerlendirme oluşturur (kullanıcı ve ürüne bağlı).
-GET /reviews/{id}: Belirli bir değerlendirmeyi getirir.
-PATCH /reviews/{id}: Değerlendirme bilgilerini günceller.
-DELETE /reviews/{id}: Değerlendirmeyi siler.
+* `GET /reviews`: Tüm değerlendirmeleri listeler (kullanıcı ve ürün bilgisiyle).
+* `POST /reviews`: Yeni bir değerlendirme oluşturur (kullanıcı ve ürüne bağlı).
+* `GET /reviews/{id}`: Belirli bir değerlendirmeyi getirir.
+* `PATCH /reviews/{id}`: Değerlendirme bilgilerini günceller.
+* `DELETE /reviews/{id}`: Değerlendirmeyi siler.
 
 ### 7. Testleri Çalıştırma
 
